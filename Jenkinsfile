@@ -31,6 +31,7 @@ pipeline {
 	stage('Create k8s cluster') {
 	    steps {
 		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
+		    sh 'echo "Create k8s cluster..."'
 		    sh '''
 			eksctl create cluster \
 			--name clouddevopscapstonecluster \
@@ -46,12 +47,11 @@ pipeline {
 		}
 	    }
         }							
-	stage('Create kubectl cluster config') {
+	stage('Configure kubectl cluster') {
 	   steps {
 		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
-		    sh '''
-		        aws eks --region us-west-2 update-kubeconfig --name clouddevopscapstonecluster
-		    '''
+		    sh 'echo "Configure kubectl cluster..."'
+		    sh 'aws eks --region us-west-2 update-kubeconfig --name clouddevopscapstonecluster'  
 		}
 	   }
 	}
