@@ -7,6 +7,7 @@ pipeline {
                 sh 'tidy -q -e *.html'
             }
         }
+	    
 	stage('Build Docker Image') {
    	    steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
@@ -17,6 +18,7 @@ pipeline {
 		}
            }
         }
+	    
 	stage('Push Image To Dockerhub') {
    	    steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
@@ -28,6 +30,7 @@ pipeline {
 		}
            }
         }
+	"""  
 	stage('Create k8s cluster') {
 	    steps {
 		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
@@ -46,15 +49,51 @@ pipeline {
 		'''
 		}
 	    }
-        }							
+        }
+	    
 	stage('Configure kubectl') {
-	   steps {
+	    steps {
 		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
 		    sh 'echo "Configure kubectl..."'
 		    sh 'aws eks --region us-west-2 update-kubeconfig --name clouddevopscapstonecluster' 
 		}
-	   }
+	    }
+        }
+	"""
+        stage('Deploy green container') {
+	    steps {
+		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
+		    sh 'echo "Deploy green container..."'
+		    sh 'kubectl apply -f ./green/green.yaml'
+		}
+	    }
+	}
+
+	stage('Deploy blue container') {
+	    steps {
+		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
+		    sh 'echo "Deploy blue container..."'
+		    sh 'kubectl apply -f ./blue/blue.yaml'
+		}
+	    }
 	}
 	    
+	stage('Create green service') {
+	    steps {
+		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
+		    sh 'echo "Create green service..."'
+		    sh 'kubectl apply -f ./green/green_service.yaml'
+		}
+	    }
+	}
+	    
+	stage('Update service to blue') {
+	    steps {
+		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
+		    sh 'echo "Update service to blue..."'
+		    sh 'kubectl apply -f ./blue/blue_service.yaml'
+		}
+	    }
+	}	
     }   
 }
