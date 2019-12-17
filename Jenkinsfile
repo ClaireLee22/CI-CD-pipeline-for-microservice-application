@@ -8,29 +8,29 @@ pipeline {
             }
         }
 	    
-	stage('Build Docker Image') {
-   	    steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
-		    sh 'echo "Building Docker Image..."'
-     	    	    sh '''
-                        docker build -t clairelee7522/clouddevopscapstone .
-                    '''
-		}
-           }
-        }
+	// stage('Build Docker Image') {
+   	//     steps {
+    //             withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
+	// 	    sh 'echo "Building Docker Image..."'
+    //  	    	    sh '''
+    //                     docker build -t clairelee7522/clouddevopscapstone .
+    //                 '''
+	// 	}
+    //        }
+    //     }
 	    
-	stage('Push Image To Dockerhub') {
-   	    steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
-		    sh 'echo "Pushing Docker Image..."'
-     	    	    sh '''
-                        docker login -u $USERNAME -p $PASSWORD
-			docker push clairelee7522/clouddevopscapstone
-                    '''
-		}
-           }
-        }
-	"""  
+	// stage('Push Image To Dockerhub') {
+   	//     steps {
+    //             withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
+	// 	    sh 'echo "Pushing Docker Image..."'
+    //  	    	    sh '''
+    //                     docker login -u $USERNAME -p $PASSWORD
+	// 		docker push clairelee7522/clouddevopscapstone
+    //                 '''
+	// 	}
+    //        }
+    //     }
+	 
 	stage('Create k8s cluster') {
 	    steps {
 		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
@@ -59,7 +59,7 @@ pipeline {
 		}
 	    }
         }
-	"""
+	
         stage('Deploy green container') {
 	    steps {
 		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
