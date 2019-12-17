@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: blue-service
+  name: gblb
 spec:
   selector:
-    app: blue-service
+    app: gblb
   ports:
     - port: 8000
       targetPort: 80
