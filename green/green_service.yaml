@@ -6,8 +6,7 @@ spec:
   selector:
     app: green-service
   ports:
-    - protocol: TCP 
-      port: 8000
+    - port: 8000
       targetPort: 80
   type: LoadBalancer
 
