@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: blue
+  labels:
+    app: blue
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: blue
+    spec:
+      containers:
+        - name: blue
+          image: clairelee7522/clouddevopscapstone
+          ports:
+            - containerPort: 80

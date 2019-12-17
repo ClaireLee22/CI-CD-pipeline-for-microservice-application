@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: blue_service
+  lables:
+    app: blue_service
+spec:
+  selector:
+    app: blue_service
+  ports:
+    - protocol: TCP 
+      port: 8080
+      targetPort: 80
+  type: LoadBalancer
+
