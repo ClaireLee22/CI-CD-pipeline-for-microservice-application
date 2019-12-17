@@ -47,11 +47,11 @@ pipeline {
 		}
 	    }
         }							
-	stage('Configure kubectl cluster') {
+	stage('Configure kubectl') {
 	   steps {
 		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
-		    sh 'echo "Configure kubectl cluster..."'
-		    sh 'aws eks --region us-west-2 update-kubeconfig --name clouddevopscapstonecluster'  
+		    sh 'echo "Configure kubectl..."'
+		    sh 'aws eks --region us-west-2 update-kubeconfig --name clouddevopscapstonecluster' 
 		}
 	   }
 	}
