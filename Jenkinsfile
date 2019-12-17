@@ -60,14 +60,14 @@ pipeline {
 	//     }
     //     }
 	
-    //     stage('Deploy green container') {
-	//     steps {
-	// 	withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
-	// 	    sh 'echo "Deploy green container..."'
-	// 	    sh 'kubectl apply -f ./green/green.yaml'
-	// 	}
-	//     }
-	// }
+        stage('Deploy green container') {
+	    steps {
+		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
+		    sh 'echo "Deploy green container..."'
+		    sh 'kubectl apply -f ./green/green.yaml'
+		}
+	    }
+	}
 
 	stage('Deploy blue container') {
 	    steps {
