@@ -12,7 +12,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
 		    sh 'echo "Building Docker Image..."'
      	    	    sh '''
-                        docker build -t clairelee7522/clouddevopscapstone .
+                        sudo docker build -t clairelee7522/clouddevopscapstone .
                     '''
 		}
            }
@@ -22,8 +22,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
 		    sh 'echo "Pushing Docker Image..."'
      	    	    sh '''
-                        docker login -u $USERNAME -p $PASSWORD
-			docker push clairelee7522/clouddevopscapstone
+                        sudo docker login -u $USERNAME -p $PASSWORD
+			sudo docker push clairelee7522/clouddevopscapstone
                     '''
 		}
            }
