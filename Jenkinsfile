@@ -18,7 +18,7 @@ pipeline {
         }
 	stage('Push Image To Dockerhub') {
    	    steps {
-                withCredentials([[usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DockerhubUser', passwordVariable: 'DockerhubPwd')]){
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DockerhubUser', passwordVariable: 'DockerhubPwd')]){
 		    sh 'echo "Pushing Docker Image"'
      	    	    sh '''
                         docker login -u ${DockerhubUser} -p ${DockerhubPwd}
