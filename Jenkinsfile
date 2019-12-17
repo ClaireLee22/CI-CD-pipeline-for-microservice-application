@@ -14,6 +14,7 @@ pipeline {
      	    	    sh '''
                         docker build -t clairelee7522/clouddevopscapstone .
                     '''
+		}
            }
         }
 	stage('Push Image To Dockerhub') {
@@ -24,8 +25,9 @@ pipeline {
                         docker login -u ${DockerhubUser} -p ${DockerhubPwd}
 			docker push clairelee7522/clouddevopscapstone
                     '''
+		}
            }
         }
-   
+ 
     }   
 }
