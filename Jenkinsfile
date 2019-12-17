@@ -9,7 +9,7 @@ pipeline {
         }
 	stage('Build Docker Image') {
    	    steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
 		    sh 'echo "Building Docker Image..."'
      	    	    sh '''
                         docker build -t clairelee7522/clouddevopscapstone .
@@ -19,7 +19,7 @@ pipeline {
         }
 	stage('Push Image To Dockerhub') {
    	    steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
 		    sh 'echo "Pushing Docker Image..."'
      	    	    sh '''
                         docker login -u $USERNAME -p $PASSWORD
