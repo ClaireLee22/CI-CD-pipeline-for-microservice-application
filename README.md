@@ -26,7 +26,7 @@ Develop a CI/CD pipeline for microservice application with blue/green deployment
 
 ### Project Results
 
-<img src="Jenkins_pipeline.png">
-<img src="Lint_failure.png">
-<img src="AWS_EC2.png">
-<img src="Web_page.png">
+<img src="images/Jenkins_pipeline.png">
+<img src="images/Lint_failure.png">
+<img src="images/AWS_EC2.png">
+<img src="images/Web_page.png">
