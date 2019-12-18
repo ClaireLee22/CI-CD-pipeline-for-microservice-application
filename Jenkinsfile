@@ -35,7 +35,7 @@ pipeline {
 		    sh 'echo "Create k8s cluster..."'
 		    sh '''
 			eksctl create cluster \
-			--name claireudacitycapstonecluster \
+			--name claireudacitycapstoneproject \
 			--version 1.14 \
 			--region us-west-2 \
 			--nodegroup-name standard-workers \
@@ -53,7 +53,7 @@ pipeline {
 	    steps {
 		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
 		    sh 'echo "Configure kubectl..."'
-		    sh 'aws eks --region us-west-2 update-kubeconfig --name claireudacitycapstonecluster' 
+		    sh 'aws eks --region us-west-2 update-kubeconfig --name claireudacitycapstoneproject' 
 		}
 	    }
         }
