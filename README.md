@@ -34,5 +34,11 @@ Develop a CI/CD pipeline for microservice application with blue/green deployment
 3. AWS EC2 insatnces after finishing deployment
 <img src="images/AWS_EC2.png">
 
+4. AWS EKS cluster
+<img src="images/CloudFormation_stacks.png">
+
+4. AWS CloudFormation stacks
+<img src="images/EKS_cluster.png">
+
 4. Web page
 <img src="images/Web_page.png">
