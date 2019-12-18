@@ -16,7 +16,7 @@ pipeline {
                         docker build -t clairelee7522/clouddevopscapstone .
                     '''
 		}
-           }
+            }
         }
 	    
 	stage('Push Image To Dockerhub') {
@@ -28,7 +28,7 @@ pipeline {
 			docker push clairelee7522/clouddevopscapstone
                     '''
 		}
-           }
+            }
         }
 	
 	stage('Aqua Security Check') {
@@ -102,6 +102,6 @@ pipeline {
 	// 	}
 	//     }
 	// }	
-    // }   
+   }   
 	    
 }
