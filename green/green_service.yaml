@@ -4,7 +4,7 @@ metadata:
   name: bglb
 spec:
   selector:
-    app: bglb
+    app: green
   ports:
     - port: 8000
       targetPort: 80
