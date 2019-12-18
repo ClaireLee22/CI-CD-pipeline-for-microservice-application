@@ -34,7 +34,7 @@ pipeline {
 	stage('Aqua Security Check') {
    	    steps {
 	       sh 'echo "Aqua Security Check..."'
-	       sh 'apt-get update && apt-get -y install ca-certificates'
+	       sh 'sudo apt-get update && apt-get -y install ca-certificates'
                aquaMicroscanner imageName: 'clairelee7522/clouddevopscapstone', notCompliesCmd: 'exit1', onDisallowed: 'fail', outputFormat: 'json'
            }
         }
