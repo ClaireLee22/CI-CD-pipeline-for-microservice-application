@@ -59,15 +59,6 @@ pipeline {
 	// 	}
 	//     }
     //     }
-	
-        stage('Deploy green container') {
-	    steps {
-		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
-		    sh 'echo "Deploy green container..."'
-		    sh 'kubectl apply -f ./green/green.yaml'
-		}
-	    }
-	}
 
 	stage('Deploy blue container') {
 	    steps {
@@ -78,20 +69,29 @@ pipeline {
 	    }
 	}
 	    
-	stage('Create green service') {
+	stage('Deploy green container') {
 	    steps {
 		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
-		    sh 'echo "Create green service..."'
-		    sh 'kubectl apply -f ./green/green_service.yaml'
+		    sh 'echo "Deploy green container..."'
+		    sh 'kubectl apply -f ./green/green.yaml'
 		}
 	    }
 	}
 	    
-	stage('Update service to blue') {
+	stage('Create blue service') {
 	    steps {
 		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
-		    sh 'echo "Update service to blue..."'
+		    sh 'echo "Create blue service..."'
 		    sh 'kubectl apply -f ./blue/blue_service.yaml'
+		}
+	    }
+	}
+	    
+	stage('Update service to green') {
+	    steps {
+		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
+		    sh 'echo "Update service to green..."'
+		    sh 'kubectl apply -f ./green/green_service.yaml'
 		}
 	    }
 	}	
