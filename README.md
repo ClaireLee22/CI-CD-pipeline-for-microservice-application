@@ -37,8 +37,8 @@ Develop a CI/CD pipeline for microservice application with blue/green deployment
 4. AWS EKS cluster
 <img src="images/CloudFormation_stacks.png">
 
-4. AWS CloudFormation stacks
+5. AWS CloudFormation stacks
 <img src="images/EKS_cluster.png">
 
-4. Web page
+6. Web page
 <img src="images/Web_page.png">
