@@ -12,7 +12,7 @@ pipeline {
    	    steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
 		    sh 'echo "Building Docker Image..."'
-     	    	    sh 'docker build -t clairelee7522/clouddevopscapstone .'
+     	    	    sh 'docker build -t clairelee7522/claireudacitycapstone .'
 		}
             }
         }
@@ -23,7 +23,7 @@ pipeline {
 		    sh 'echo "Pushing Docker Image..."'
      	    	    sh '''
                         docker login -u $USERNAME -p $PASSWORD
-			docker push clairelee7522/clouddevopscapstone
+			docker push clairelee7522/claireudacitycapstone
                     '''
 		}
             }
@@ -35,7 +35,7 @@ pipeline {
 		    sh 'echo "Create k8s cluster..."'
 		    sh '''
 			eksctl create cluster \
-			--name clouddevopscapstonecluster \
+			--name claireudacitycapstonecluster \
 			--version 1.14 \
 			--region us-west-2 \
 			--nodegroup-name standard-workers \
@@ -53,7 +53,7 @@ pipeline {
 	    steps {
 		withAWS(credentials: 'aws-kubectl', region: 'us-west-2a') {
 		    sh 'echo "Configure kubectl..."'
-		    sh 'aws eks --region us-west-2 update-kubeconfig --name clouddevopscapstonecluster' 
+		    sh 'aws eks --region us-west-2 update-kubeconfig --name claireudacitycapstonecluster' 
 		}
 	    }
         }
