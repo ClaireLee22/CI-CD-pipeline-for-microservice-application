@@ -25,8 +25,14 @@ Develop a CI/CD pipeline for microservice application with blue/green deployment
   - Kubernetes cluster
 
 ### Project Results
-
+1. Jenkins pipeline after fining deployment
 <img src="images/Jenkins_pipeline.png">
+
+2. Test lint failure in Jenkins pipeline
 <img src="images/Lint_failure.png">
+
+3. AWS EC2 insatnces after fining deployment
 <img src="images/AWS_EC2.png">
+
+4. Web page
 <img src="images/Web_page.png">
