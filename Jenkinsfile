@@ -12,9 +12,7 @@ pipeline {
    	    steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]){
 		    sh 'echo "Building Docker Image..."'
-     	    	    sh '''
-                        docker build -t clairelee7522/clouddevopscapstone .
-                    '''
+     	    	    sh 'docker build -t clairelee7522/clouddevopscapstone .'
 		}
             }
         }
@@ -34,7 +32,6 @@ pipeline {
 	stage('Aqua Security Check') {
    	    steps {
 	       sh 'echo "Aqua Security Check..."'
-	       sh 'sudo apt-get update && apt-get -y install ca-certificates'
                aquaMicroscanner imageName: 'clairelee7522/clouddevopscapstone', notCompliesCmd: 'exit1', onDisallowed: 'fail', outputFormat: 'json'
            }
         }
