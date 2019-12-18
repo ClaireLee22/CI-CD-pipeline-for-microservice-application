@@ -34,7 +34,7 @@ pipeline {
 	stage('Aqua Security Check') {
    	    steps {
 	       sh 'echo "Aqua Security Check..."'
-               aquaMicroscanner imageName: 'clouddevopscapstone', notCompliesCmd: 'exit1', onDisallowed: 'fail', outputFormat: 'json'
+               aquaMicroscanner imageName: 'clairelee7522/clouddevopscapstone', notCompliesCmd: 'exit1', onDisallowed: 'fail', outputFormat: 'json'
            }
         }
 	 
